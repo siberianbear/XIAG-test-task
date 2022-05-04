@@ -38,6 +38,12 @@ class Index extends React.Component<MainAppProps, MainAppState> {
         const { todoTitle } = this.state;
         window.allTodosIsDone = true;
 
+        // Issue 1
+        // Description: Wrong method and way to check generally
+        // Solution
+        // let allDone = this.props.todos.filter(t => {if (t.isDone) return t})
+        // allDone.length == this.props.todos.length ? window.allTodosIsDone = true : window.allTodosIsDone = false
+
         this.props.todos.map(t => {
             if (!t.isDone) {
                 window.allTodosIsDone = false
@@ -48,10 +54,18 @@ class Index extends React.Component<MainAppProps, MainAppState> {
 
         return (
             <div>
+                {/* Issue 2 */}
+                {/* Description: Not critical, but for to avoid errors */}
+                {/* Solution */}
+                {/* <Form.Check type="checkbox" label="all todos is done!" checked={window.allTodosIsDone} readOnly/> */}
                 <Form.Check type="checkbox" label="all todos is done!" checked={window.allTodosIsDone}/>
                 <hr/>
                 <InputNewTodo todoTitle={todoTitle} onChange={this.handleTodoTitle} onSubmit={this.handleSubmitTodo}/>
                 {this.props.todos.map((t, idx) => (
+                    // Issue 3
+                    // Description: Need to add "key"-attribute
+                    // Solution
+                    // <div className={styles.todo} key={idx} >
                     <div className={styles.todo} >
                         {t.title}
                         <UserSelect user={t.user} idx={idx}/>

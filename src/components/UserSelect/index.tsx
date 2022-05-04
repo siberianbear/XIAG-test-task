@@ -26,7 +26,7 @@ function UserSelect(props: UserSelectProps) {
         const changedTodos = todos.map((t, index) => {
             const res = { ...t }
             if (index == idx) {
-                console.log('props.user', props.user);
+                console.log('props.user', e.target.value);
                 res.user = e.target.value;
             }
             return res;
@@ -36,6 +36,10 @@ function UserSelect(props: UserSelectProps) {
 
     return (
         <select name="user" className={styles.user} onChange={handleChange}>
+            {/* Issue 4 */}
+            {/* Description: need to add key-attribute */}
+            {/* Solution: */}
+            {/* {options.map((user: any) => <option key={user.id} value={user.id}>{user.name}</option>)} */}
             {options.map((user: any) => <option value={user.id}>{user.name}</option>)}
         </select>
     );

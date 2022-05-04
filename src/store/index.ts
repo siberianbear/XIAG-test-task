@@ -5,6 +5,17 @@ export default configureStore({
         list: (state = {todos: []}, action) => {
             switch (action.type) {
                 case 'ADD_TODO': {
+                    // Issue 5
+                    // Description: wrongly way to change/mutate state 
+                    // Solution
+                    // const newState = [...state.todos];
+                    // newState.push(action.payload);
+                    
+                    // return {
+                    //     ...state,
+                    //     todos: newState
+                    // };
+
                     const newState = state;
                     newState.todos.push(action.payload);
                     return newState;
